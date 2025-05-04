@@ -7,7 +7,7 @@ app = Flask(__name__)
 @app.route("/", methods=["GET", "POST"])
 def chat():
     if request.method == "POST":
-        # Fetch the latest headline for every question
+        # Fetching the latest headline for every question
         feed_url = f"http://newsrss.bbc.co.uk/rss/newsonline_uk_edition/technology/rss.xml?{int(time.time())}"
         feed = feedparser.parse(feed_url)
         if feed.entries:
@@ -25,7 +25,7 @@ def chat():
         elif question == "who rules the world?":
             response = "Time traveler: A council of AI dolphins. Don’t ask how they got the votes."
         elif question == "are robots in charge?":
-            # Refresh the headline again here
+            # Refreshing the headline again here
             feed = feedparser.parse("http://newsrss.bbc.co.uk/rss/newsonline_uk_edition/technology/rss.xml")
             if feed.entries:
                 latest_headline = feed.entries[1].title
